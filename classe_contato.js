@@ -42,21 +42,6 @@ class Contato {
         this.#id = valor;
     }
 
-    getId(){
-        return this.#id;
-    }
-
-    getNome() {
-        return this.#nome;
-    }
-
-    getTelefone() {
-        return this.#telefone;
-    }
-
-    getEndereco() {
-        return this.#endereco;
-    }
 
      // Método para retornar um objeto contendo os campos e valores do contato
      toObject() {
