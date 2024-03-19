@@ -31,3 +31,15 @@ body {
 .card-title {
   color: #f48fb1; /* Cor rosa claro para o título */
 }
+
+.estilizacaoContato {
+  background-color: #fff; 
+  border-color: #f48fb1; 
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Sombra suave */
+}
+
+.pink-id {
+  color: #f48fb1;
+  padding: 4px;
+}
