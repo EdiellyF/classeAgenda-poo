@@ -1,0 +1,33 @@
+body {
+  background-color: #fde4ec; /* Rosa suave de fundo */
+}
+
+.card {
+  background-color: #fff; /* Fundo branco para o cartão */
+  border-radius: 20px; /* Cantos arredondados */
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Sombra suave */
+}
+
+.form-control {
+  background-color: #fff; /* Fundo branco para os campos */
+  border-color: #f48fb1; /* Cor rosa claro para a borda */
+  color: #333; /* Cor do texto */
+  border-radius: 10px; /* Cantos arredondados */
+}
+
+.btn {
+  background-color: #f48fb1; /* Cor rosa claro para o botão */
+  border-color: #f48fb1; /* Cor rosa claro para a borda */
+  color: #fff; /* Cor do texto */
+  border-radius: 20px; /* Cantos arredondados */
+  transition: all 0.3s ease; /* Transição suave */
+}
+
+.btn:hover {
+  background-color: #e57373; /* Cor rosa mais escura ao passar o mouse */
+  border-color: #e57373; /* Cor rosa mais escura para a borda */
+}
+
+.card-title {
+  color: #f48fb1; /* Cor rosa claro para o título */
+}
