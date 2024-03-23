@@ -14,6 +14,13 @@ class Agenda {
     salvar(){
         localStorage.agenda = JSON.stringify(this.#contatos);
     }
+    remover(id){
+       for(let i=0; i < this.#contatos.length; i++){
+            if(this.#contatos[i].id === id){
+                this.#contatos.splice(i,1)
+            }
+       }
+    }
    
     getAgenda(){
         return this.#contatos;
