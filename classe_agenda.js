@@ -1,3 +1,4 @@
+
 class Agenda {
     #contatos = [];
 
@@ -18,10 +19,37 @@ class Agenda {
        for(let i=0; i < this.#contatos.length; i++){
             if(this.#contatos[i].id === id){
                 this.#contatos.splice(i,1)
+                break;
             }
        }
     }
-   
+ 
+    buscar(telefone) {
+        const pessoasFiltradas = this.#contatos.filter((contato) => 
+             contato.telefone === telefone
+        );
+    
+        if (pessoasFiltradas.length > 0) {
+            const agendaViewer = new AgendaViewer(pessoasFiltradas);
+            agendaViewer.exibirContatos("mydiv");
+        } else {
+            console.log("Nenhum contato encontrado.");
+        }
+    }
+    
+    editarContato(id, novoContato) {
+        for (let i = 0; i < this.#contatos.length; i++) {
+            if (this.#contatos[i].id === id) {
+                this.#contatos[i] = novoContato; 
+                this.salvar(); 
+                return true; 
+            }
+        }
+        return false;
+    }
+
+
+
     getAgenda(){
         return this.#contatos;
     }
@@ -47,8 +75,12 @@ class AgendaViewer {
             `;
             container.appendChild(contatoContainer); 
         }
+
+        
     }
   
+ 
 }
+
 
 

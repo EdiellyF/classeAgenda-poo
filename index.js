@@ -38,10 +38,8 @@ document.getElementById("btnRemover").addEventListener("click", function(event) 
 
 
   document.getElementById("btnInserir").addEventListener("click", function(event) {
-        event.preventDefault(); // Evita o comportamento padrão de submissão do formulário
-
+        event.preventDefault(); 
         try {
-          // Pegar os valores dos campos
           const nome = document.getElementById("nome").value;
           const endereco = document.getElementById("endereco").value;
           const telefone = document.getElementById("telefone").value; 
@@ -62,7 +60,21 @@ document.getElementById("btnRemover").addEventListener("click", function(event) 
         }
       });
 
- 
+
+  document.getElementById("btnBuscar").addEventListener("click", function(event){
+        event.preventDefault(); 
+    
+        const nome = document.getElementById("nome").value;
+        const endereco = document.getElementById("endereco").value;
+        const telefone = document.getElementById("telefone").value;
+        
+        if (nome === "" || endereco === "" || telefone === "") {
+            alert("Erro: Preencha todos os campos.");
+        } else {
+            agenda.buscar(telefone);
+        }
+    });
+    
 
 
 
