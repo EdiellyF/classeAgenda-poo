@@ -50,7 +50,7 @@ body {
 }
 
 .remover-contato {
-  background-image: url('/assets/imgs/imgButton.svg');
+  background-image: url('https://img.icons8.com/color/48/full-trash.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
