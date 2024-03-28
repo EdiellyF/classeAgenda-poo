@@ -1,14 +1,14 @@
 
+import {Agenda, AgendaViewer } from './classe_agenda.js';
+import {Contato } from "./classe_contato.js";
 
-document.addEventListener("DOMContentLoaded", function() {
-
+  document.addEventListener("DOMContentLoaded", function() {
       // Instanciar a Agenda e o AgendaViewer
-    const agenda = new Agenda();
-    const agendaViewer = new AgendaViewer(agenda.getAgenda());
+      const agenda = new Agenda();
+      const agendaViewer = new AgendaViewer(agenda.getAgenda());
 
 
-    
-function geraNovoSerial() {
+    function geraNovoSerial() {
       // Obter o valor atual do serial do localStorage
       let valorSerial = parseInt(localStorage.getItem("serial") || "0");
       // Incrementar o valor do serial
@@ -17,27 +17,15 @@ function geraNovoSerial() {
       localStorage.setItem("serial", valorSerial.toString());
       // Retornar o novo valor do serial
       return valorSerial;
-}
+    }
 
 
-function mostrarAgenda(){
+    function mostrarAgenda(){
     agendaViewer.exibirContatos('mydiv')
-}
-
-document.getElementById("btnRemover").addEventListener("click", function(event) {
-      event.preventDefault(); // Evita o comportamento padrão de submissão do formulário
-     
-      let idParaRemover = prompt("Digite o ID do contato a ser removido:");
-  
-      idParaRemover = parseFloat(idParaRemover);
-      agenda.remover(idParaRemover);
-   
-      // Mostrar a agenda atualizada
-      mostrarAgenda();
-  });
+    }
 
 
-  document.getElementById("btnInserir").addEventListener("click", function(event) {
+    document.getElementById("btnInserir").addEventListener("click", function(event) {
         event.preventDefault(); 
         try {
           const nome = document.getElementById("nome").value;
@@ -53,7 +41,7 @@ document.getElementById("btnRemover").addEventListener("click", function(event) 
           agenda.inserir(c.toObject());
           // Mostrar a agenda atualizada
           mostrarAgenda();
-    
+
         } catch (error) {
           // Lidar com o erro
           alert("Erro   " + error.message);
@@ -61,9 +49,9 @@ document.getElementById("btnRemover").addEventListener("click", function(event) 
       });
 
 
-  document.getElementById("btnBuscar").addEventListener("click", function(event){
+    document.getElementById("btnBuscar").addEventListener("click", function(event){
         event.preventDefault(); 
-    
+
         const nome = document.getElementById("nome").value;
         const endereco = document.getElementById("endereco").value;
         const telefone = document.getElementById("telefone").value;
@@ -74,11 +62,20 @@ document.getElementById("btnRemover").addEventListener("click", function(event) 
             agenda.buscar(telefone);
         }
     });
+
     
 
-
-
-
+    document.addEventListener("click", function(event) {
+      if (event.target && event.target.classList.contains("remover-contato")) {
+          event.preventDefault(); 
+          const idParaRemover = event.target.dataset.id;
+          console.log(idParaRemover);
+          agenda.remover(parseInt(idParaRemover));
+          agenda.salvar();
+          mostrarAgenda();
+      }
+  });
+    
+  
 });
-
 

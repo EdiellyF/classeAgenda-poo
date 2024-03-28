@@ -53,3 +53,5 @@ class Contato {
         };
     }
 }
+
+export {Contato};

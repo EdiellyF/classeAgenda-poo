@@ -1,4 +1,3 @@
-
 class Agenda {
     #contatos = [];
 
@@ -19,7 +18,6 @@ class Agenda {
        for(let i=0; i < this.#contatos.length; i++){
             if(this.#contatos[i].id === id){
                 this.#contatos.splice(i,1)
-                break;
             }
        }
     }
@@ -48,8 +46,6 @@ class Agenda {
         return false;
     }
 
-
-
     getAgenda(){
         return this.#contatos;
     }
@@ -64,6 +60,7 @@ class AgendaViewer {
     exibirContatos(id) {
         const container = document.getElementById(id);
         container.innerHTML = "";
+        
         for (const contato of this.agenda) {
             const contatoContainer = document.createElement('div'); // Criar um contêiner para o contato
             contatoContainer.classList.add("estilizacaoContato");
@@ -73,14 +70,13 @@ class AgendaViewer {
                 <p>Endereço: ${contato.endereco}</p>
                 <p>Telefone: ${contato.telefone}</p>
             `;
-            container.appendChild(contatoContainer); 
+            const btnRemover = document.createElement('button'); 
+            btnRemover.classList.add('remover-contato'); 
+            btnRemover.dataset.id = contato.id; 
+            contatoContainer.appendChild(btnRemover);
+            container.appendChild(contatoContainer);
         }
-
-        
     }
-  
- 
 }
 
-
-
+  export {Agenda, AgendaViewer};
