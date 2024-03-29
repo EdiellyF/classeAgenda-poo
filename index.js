@@ -64,7 +64,6 @@ import {Contato } from "./classe_contato.js";
     });
 
     
-
     document.addEventListener("click", function(event) {
       if (event.target && event.target.classList.contains("remover-contato")) {
           event.preventDefault(); 
@@ -75,7 +74,15 @@ import {Contato } from "./classe_contato.js";
           mostrarAgenda();
       }
   });
-    
-  
+
+    document.addEventListener("click", function(event) {
+      if (event.target && event.target.classList.contains("editar-contato")) {
+          event.preventDefault(); 
+          const idParaEditar = event.target.dataset.id;
+          agenda.editarContato(parseInt(idParaEditar));
+          agenda.salvar();
+          mostrarAgenda();
+      }
+    });
 });
 

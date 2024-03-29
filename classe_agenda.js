@@ -75,6 +75,13 @@ class AgendaViewer {
             btnRemover.dataset.id = contato.id; 
             contatoContainer.appendChild(btnRemover);
             container.appendChild(contatoContainer);
+
+
+            const btnEditar = document.createElement('button'); 
+            btnEditar.classList.add('editar-contato'); 
+            btnEditar.dataset.id = contato.id; 
+            contatoContainer.appendChild(btnEditar);
+            container.appendChild(contatoContainer);
         }
     }
 }
