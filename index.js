@@ -17,9 +17,12 @@ import {Contato } from "./classe_contato.js";
     return valorSerial;
   }
 
-
+document.getElementById('mostrarAgenda').addEventListener('click', mostrarAgenda)
   function mostrarAgenda(){
-  agendaViewer.exibirContatos('mydiv')
+       // Instanciar a Agenda e o AgendaViewer
+       const agenda = new Agenda();
+       const agendaViewer = new AgendaViewer(agenda.getAgenda());
+      agendaViewer.exibirContatos('mydiv')
   }
 
 
@@ -64,7 +67,7 @@ import {Contato } from "./classe_contato.js";
             // Instanciar a Agenda e o AgendaViewer
     const agenda = new Agenda();
     const agendaViewer = new AgendaViewer(agenda.getAgenda());
-    
+
           agenda.buscar(telefone);
           agenda.salvar()
       }
