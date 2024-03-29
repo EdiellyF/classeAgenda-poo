@@ -1,3 +1,5 @@
+
+
 class Agenda {
     #contatos = [];
 
@@ -29,11 +31,14 @@ class Agenda {
     
         if (pessoasFiltradas.length > 0) {
             const agendaViewer = new AgendaViewer(pessoasFiltradas);
-            agendaViewer.exibirContatos("mydiv");
+            const container = document.getElementById('mydiv');
+            container.innerHTML = "";
+            agendaViewer.exibirContatos('mydiv')
         } else {
             console.log("Nenhum contato encontrado.");
         }
     }
+    
     
     editarContato(id, novoContato) {
         for (let i = 0; i < this.#contatos.length; i++) {
@@ -77,6 +82,18 @@ class AgendaViewer {
             container.appendChild(contatoContainer);
 
 
+    btnRemover.addEventListener('click', (event) => {
+        event.preventDefault();
+            // Instanciar a Agenda e o AgendaViewer
+        const agenda = new Agenda();
+        const agendaViewer = new AgendaViewer(agenda.getAgenda());
+        const idParaRemover = event.target.dataset.id;
+        agenda.remover(parseInt(idParaRemover));
+        agenda.salvar();
+        agendaViewer.exibirContatos('mydiv');
+    });
+
+
             const btnEditar = document.createElement('button'); 
             btnEditar.classList.add('editar-contato'); 
             btnEditar.dataset.id = contato.id; 
@@ -86,4 +103,5 @@ class AgendaViewer {
     }
 }
 
-  export {Agenda, AgendaViewer};
+
+export {Agenda, AgendaViewer};

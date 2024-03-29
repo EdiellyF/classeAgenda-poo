@@ -8,7 +8,6 @@ class Contato {
         this.setNome(nome);
         this.setEndereco(endereco);
         this.setTelefone(telefone);
-        this.id = null; // O id será definido posteriormente
     }
 
     // Métodos de configuração

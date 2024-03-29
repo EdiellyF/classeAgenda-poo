@@ -34,10 +34,13 @@
                     <label for="endereco">Endereço:</label>
                     <input type="text" class="form-control" id="endereco" placeholder="Digite seu endereço">
                   </div>
-                  <button class="btn btn-block mt-4" id="btnInserir">Inserir</button>
-                  <button class="btn btn-block mt-4" id="btnBuscar">Buscar</button>
+                  <button type="submit" class="btn btn-block mt-4" id="btnInserir">Inserir</button>
+                  <button type="button" class="btn btn-block mt-4" id="btnBuscar">Buscar</button>
                   <button type="reset" class="btn btn-block mt-4">Limpar</button>
+                  
+
                 </form>
+           
               </div>
             </div>
           </div>
@@ -47,17 +50,20 @@
       <div class="container p-4">
         <div class="row justify-content-center">
           <div class="col-lg-6 col-md-8">
-              <div id="mydiv" class="text-center">
+              <div id="mydiv" class="text-center"></div>
+              <div id="mydivs" class="text-center"></div>
           </div>
-            <div id="contatosEncontrados"></div>
           </div>
         </div>
-      </div>
+    
       
 
     <script src="./assets/js/jquery-3.7.1.min.js"></script>
     <script src="./assets/js/jq_funcao.js"></script>
 
-    <script type="module" src="index.js"></script>
+    
+      
+  
+    <script   src="index.js" type="module"></script>
   </body>
 </html>
