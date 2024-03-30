@@ -37,10 +37,12 @@ document.getElementById('mostrarAgenda').addEventListener('click', mostrarAgenda
         const nome = document.getElementById("nome").value;
         const endereco = document.getElementById("endereco").value;
         const telefone = document.getElementById("telefone").value; 
-        // Criar um novo objeto Contato
-        const c = new Contato(nome, endereco, telefone);
         // Gerar um novo serial
         const novoSerial = geraNovoSerial();
+
+        // Criar um novo objeto Contato
+        const c = new Contato(nome, endereco, telefone);
+        
         // Definir o serial para o contato
         c.setId(novoSerial);
         // Inserir o contato na agenda
@@ -54,7 +56,8 @@ document.getElementById('mostrarAgenda').addEventListener('click', mostrarAgenda
     });
 
 
-  document.getElementById("btnBuscar").addEventListener("click", function(event){
+    const btnBuscar =  document.getElementById("btnBuscar")
+     btnBuscar.addEventListener("click", function(event){
       event.preventDefault(); 
 
       const nome = document.getElementById("nome").value;
@@ -64,13 +67,11 @@ document.getElementById('mostrarAgenda').addEventListener('click', mostrarAgenda
       if (nome === "" || endereco === "" || telefone === "") {
           alert("Erro: Preencha todos os campos.");
       } else {
-            // Instanciar a Agenda e o AgendaViewer
+    // Instanciar a Agenda e o AgendaViewer
     const agenda = new Agenda();
-    const agendaViewer = new AgendaViewer(agenda.getAgenda());
+    agenda.buscar(telefone);
+    agenda.salvar()
 
-          agenda.buscar(telefone);
-          agenda.salvar()
       }
   });
   });
-

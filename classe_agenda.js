@@ -40,16 +40,20 @@ class Agenda {
     }
     
     
-    editarContato(id, novoContato) {
+    editarContato(id, nome, endereco, telefone) {
         for (let i = 0; i < this.#contatos.length; i++) {
-            if (this.#contatos[i].id === id) {
-                this.#contatos[i] = novoContato; 
+            if (this.#contatos[i].id == id) {
+                this.#contatos[i].id = id;
+                this.#contatos[i].nome = nome;
+                this.#contatos[i].telefone = telefone;
+                this.#contatos[i].endereco = endereco; 
                 this.salvar(); 
-                return true; 
+                break; 
             }
         }
-        return false;
     }
+    
+    
 
     getAgenda(){
         return this.#contatos;
@@ -75,29 +79,62 @@ class AgendaViewer {
                 <p>Endereço: ${contato.endereco}</p>
                 <p>Telefone: ${contato.telefone}</p>
             `;
+
+
             const btnRemover = document.createElement('button'); 
             btnRemover.classList.add('remover-contato'); 
             btnRemover.dataset.id = contato.id; 
-            contatoContainer.appendChild(btnRemover);
             container.appendChild(contatoContainer);
 
+                    btnRemover.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        // Instanciar a Agenda e o AgendaViewer
+                        const agenda = new Agenda();
+                        const agendaViewer = new AgendaViewer(agenda.getAgenda());
+                        const idParaRemover = event.target.dataset.id;
+                        agenda.remover(parseInt(idParaRemover));
+                        agenda.salvar();
+                        agendaViewer.exibirContatos('mydiv');
+                    });
 
-    btnRemover.addEventListener('click', (event) => {
-        event.preventDefault();
-            // Instanciar a Agenda e o AgendaViewer
-        const agenda = new Agenda();
-        const agendaViewer = new AgendaViewer(agenda.getAgenda());
-        const idParaRemover = event.target.dataset.id;
-        agenda.remover(parseInt(idParaRemover));
-        agenda.salvar();
-        agendaViewer.exibirContatos('mydiv');
-    });
-
-
-            const btnEditar = document.createElement('button'); 
-            btnEditar.classList.add('editar-contato'); 
-            btnEditar.dataset.id = contato.id; 
+        const btnEditar = document.createElement('button'); 
+        btnEditar.classList.add('editar-contato'); 
+        btnEditar.dataset.contatoId = contato.id;
+    
+        btnEditar.addEventListener('click', (event) => {
+            event.preventDefault();
+            const elementosParaRemover = document.querySelectorAll('#mostrarAgenda, #btnBuscar, #limpar, #btnInserir');
+            elementosParaRemover.forEach(elemento => elemento.remove());   
+            container.innerHTML = "";
+        
+            const agenda = new Agenda();
+            
+            // Preencher os campos de entrada com os dados do contato
+            const contatoId = event.target.dataset.contatoId; // Capturar o ID do contato do botão clicado
+            document.getElementById("nome").value = contato.nome;
+            document.getElementById("endereco").value = contato.endereco;
+            document.getElementById("telefone").value = contato.telefone;
+        
+            const btnAtualizar = document.createElement('button');
+            btnAtualizar.innerText = 'Atualizar';
+        
+            btnAtualizar.addEventListener('click', () => {
+                agenda.editarContato(contatoId,
+                    document.getElementById("nome").value,
+                    document.getElementById("endereco").value,
+                    document.getElementById("telefone").value 
+                );
+                
+                agenda.salvar();
+                const agendaViewer = new AgendaViewer(agenda.getAgenda());
+                agendaViewer.exibirContatos('mydiv')
+            });
+        
+            document.querySelector('form').appendChild(btnAtualizar);
+        });
+          
             contatoContainer.appendChild(btnEditar);
+            contatoContainer.appendChild(btnRemover);
             container.appendChild(contatoContainer);
         }
     }

@@ -8,6 +8,7 @@ class Contato {
         this.setNome(nome);
         this.setEndereco(endereco);
         this.setTelefone(telefone);
+       
     }
 
     // Métodos de configuração
